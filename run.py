@@ -22,9 +22,16 @@ while has_more:
     table = driver.find_element_by_tag_name("tbody")
     for tr in table.find_elements_by_tag_name("tr"):
         tds = tr.find_elements_by_tag_name("td")
+
         name = tds[1].text
         sell = tds[2].text
+        if sell not in ['Cannot', '???']:
+            sell = int(sell.replace(',',''))
+
         buy = tds[3].text
+        if buy not in ['Cannot', '???']:
+            buy = int(buy.replace(',',''))
+
         print(f'name: "{name}"')
         print(f'sell: "{sell}"')
         print(f'buy: "{buy}"\n')
